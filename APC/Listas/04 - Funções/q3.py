@@ -4,12 +4,21 @@ que recebe uma lista e diz qual a soma máxima
 entre dois elementos da lista
 """
 
-def soma_maxima(lista):
-    res = lista[0]+lista[1]
-    for i in range(2,len(lista)):
-        if(lista[i] + lista[i-1] > res):
-            res = lista[i] + lista[i-1]
+def maior(lista):
+    res = 0
+    for i in range(0,len(lista)):
+        if lista[i] > lista[res]:
+            res = i
     return res
 
-lista = [1,2,3,-50,-10,20]
-print(soma_maxima(lista))
+lista = [1,2,3,50,-10,20]
+
+idx_m = maior(lista)
+res = lista[idx_m]
+
+lista[idx_m] = float("-inf") #infinito negativo, pra garantir que nao sera escolhido o mesmo numero.
+
+idx_m2 = maior(lista)
+res += lista[idx_m2]
+
+print(res)
