@@ -1,2 +1,2 @@
 # cc-ufal
-Listas de exercícios que fiz durante a universidade.
+Códigos usados durante minha graduação em Ciência da Computação na Universidade Federal de Alagoas(UFAL)
