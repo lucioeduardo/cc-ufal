@@ -1,4 +1,4 @@
-from stack import Stack
+from static_stack import Stack
 
 p = Stack(50)
 
