@@ -6,7 +6,6 @@ exp = input()
 res = True
 
 for i in exp:
-    p.print_all()
     if(i in "{[("):
         p.push(i)
     elif(i == ")" and p.pop() != "("):
@@ -15,5 +14,7 @@ for i in exp:
         res = False
     elif(i == "}" and p.pop() != "{"):
         res = False
+
+res = res and p.empty()
 
 print("Bem formada" if res else "Mal formada")
