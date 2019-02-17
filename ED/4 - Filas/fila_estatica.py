@@ -24,26 +24,7 @@ class Queue:
         return self.begin == self.end
     
     def full(self):
-        return self.end == self.begin-1
+        return self.end == (self.begin-1)%self.size
 
     def print_queue(self):
         print (self.queue, self.begin, self.end)
-
-q = Queue(5)
-
-q.push(3)
-q.push(4)
-print(q.pop())
-q.push(5)
-q.push(6)
-q.push(7)
-q.push(8)
-
-q.print_queue()
-print(q.pop())
-print(q.pop())
-print(q.pop())
-print(q.pop())
-print(q.pop())
-q.print_queue()
-print(q.pop())
