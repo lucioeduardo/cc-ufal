@@ -64,6 +64,8 @@ def question_3():
   plt.xlabel("Values") # legenda do eixo x
   plt.ylabel("Frequencies") # legenda do eixo y
 
+  plt.title("Mixed distribution histogram")
+
   plt.show()
 
 def question_4():
