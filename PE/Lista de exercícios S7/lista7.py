@@ -89,6 +89,7 @@ def question_4():
   # mostrando o grafico
   plt.show()
 
+# função que retorna a cor de acordo com o estado dado para a questão 5
 def map_color(state):
     if state == 'up':
         return 'red'
@@ -97,21 +98,31 @@ def map_color(state):
     return 'lightgray'
 
 def question_5():
+  # lendo o dataset via csv através do pandas
   data = pd.read_csv('up_down_expression.csv', sep="\t")
 
+  # pegando os dados do eixo x, condition 1
   x = data['Condition1']
+  # dados do eixo y, condition 2
   y = data['Condition2']
 
+  # Atribuindo a cor para cada ponto, de acordo com o estado
+  # Através de list comprehension, será criado um valor na lista mapeado atravéz da função map_color() para cada linha do dataset
   color = [map_color(i) for i in data['State']]
 
+  # Plotando o gráfico com os dados capturados acima
   plt.scatter(x,y,marker='.',c=color)
+
+  # Modificando os marcadores nos eixos
   plt.xticks([0,5,10])
   plt.yticks([0,5,10])
 
+  # Modificando os limites dos eixos
   axes = plt.gca()
   axes.set_xlim([-4,14])
   axes.set_ylim([-4,14])
 
+  # Definindo as legendas dos eixos
   plt.xlabel('Condition 1')
   plt.ylabel('Condition 2')
 
