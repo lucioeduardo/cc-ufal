@@ -67,16 +67,26 @@ def question_3():
   plt.show()
 
 def question_4():
-  values = [2,1,2,3,3,6,5,10,9,18]
+  # valores dados no dataset, que determinam a altura da barra
+  values = [2,1,2,3,3,6,5,10,9,18] 
+
+  # valores dados no dataset(marcadores do eixo x)
   labels = ["D1 Male", "D1 Female", "D2 Male", "D2 Female", "D3 Male", "D3 Female", "D4 Male", "D4 Female", "D5 Male", "D5 Female"]
+
+  # cor para cada barra 
   colors = ['red','orange','palegreen', 'lime', 'limegreen', 'aqua', 'royalblue', 'mediumblue', 'blueviolet', 'magenta']
 
+  # coordenadas do eixo x, de 0 a 9 já que tem 10 barras
   x_coords = range(10)
 
+  # plotando o grafico de barras
   plt.bar(x_coords, values, color=colors)
+  
+  # modificando os marcadores dos eixos e o tamanho da fonte no eixo x para evitar sobreposição
   plt.xticks(x_coords, labels, fontsize=6)
   plt.yticks([0,5,10,15])
-  plt.tight_layout()
+  
+  # mostrando o grafico
   plt.show()
 
 def map_color(state):
