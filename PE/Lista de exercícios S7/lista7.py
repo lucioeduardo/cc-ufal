@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
+import matplotlib.patches as mpatches
+
 
 
 def question_1():
@@ -131,7 +133,36 @@ def question_5():
   plt.show()
 
 def question_6():
-  pass
+  # Leitura do dataset
+  data = pd.read_csv('chromosome_position_data.csv', sep="\t")
+
+  # Recuperando os dados do dataset(valores do eixo y)
+  mut1 = data['Mut1']
+  mut2 = data['Mut2']
+  wt = data['WT']
+
+  # Valores do eixo x
+  postitions = data['Position']
+
+  # Plotando as linhas, com width=1 para melhor visualização
+  plt.plot(postitions,mut1,color='red', linewidth=1)
+  plt.plot(postitions,mut2,color='green', linewidth=1)
+  plt.plot(postitions,wt,color='royalblue', linewidth=1)
+
+  # Adicionando as legendas, basta relacionar a cor com o nome do conjunto
+  red_patch = mpatches.Patch(color='red', label='Mut1')
+  blue_patch = mpatches.Patch(color='royalblue', label='Mut2')
+  green_patch = mpatches.Patch(color='green', label='WT')
+  plt.legend(handles=[red_patch,blue_patch,green_patch])
+
+  # Legenda dos eixos
+  plt.xlabel('Position with chromosome')
+  plt.ylabel('Value')
+
+  # Configuração para o gráfico mostrar os valores completos nos marcadores do eixo x, sem isso seria mostrado em notação científica
+  plt.ticklabel_format(useOffset=False, style='plain')
+
+  plt.show()
 
 def question_7():
   pass
