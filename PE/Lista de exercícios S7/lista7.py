@@ -165,7 +165,43 @@ def question_6():
   plt.show()
 
 def question_7():
-  pass
+  # Lendo o dataset
+  data = pd.read_csv('brain_bodyweight.csv', sep="\t")
+
+  # Recuperando os dados do dataset
+  brain_weight = data['Brainweight']
+  body_weight = data['Bodyweight']
+  brain_sem = data['Brainweight.SEM']
+  body_sem = data['Bodyweight.SEM']
+  species = data['Species']
+
+  # Percorrendo o dataset para criar uma barra para cada linha
+  for i in range(len(brain_weight)):
+      x = brain_weight[i] # coordenada x representada pelo brain weight
+      y = body_weight[i] # coordenada y representada pelo body weight
+      
+      x_err = brain_sem[i] # erro em x
+      y_err = body_sem[i] # erro em y
+
+      # plotando a barra, com parametro capsize=3(adiciona os segmentos nos extremos do intervalo) e largura 1, com formato de ponto
+      plt.errorbar(x,y,xerr=x_err, yerr=y_err, fmt='.', color='black', elinewidth=1, capsize=3)
+      # adicionando a texto com espécie relacionada abaixo da barra, centralizado
+      plt.text(x,y-0.2,species[i], fontsize=5, ha='center', zorder=2)
+
+  # Modificando os marcadores dos eixos
+  plt.yticks([-1,0,1,2,3,4,5])
+  plt.xticks([0,1,2,3])
+
+  # Modificando os limites dos eixos
+  axes = plt.gca()
+  axes.set_xlim([-0.7,4.2])
+  axes.set_ylim([-2,5.3])
+
+  # Modificando a legenda dos eixos
+  plt.xlabel('Brain weight')
+  plt.ylabel('Body weight')
+
+  plt.show()
 
 
 op = int(input("Digite o número da questão para visualizar o gráfico (de 1 a 7):"))
