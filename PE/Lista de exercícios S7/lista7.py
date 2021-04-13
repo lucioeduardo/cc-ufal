@@ -3,13 +3,11 @@ import pandas as pd
 from matplotlib import pyplot as plt
 import matplotlib.patches as mpatches
 
-
-
 def question_1():
     # Lista de idades, a função range gera uma lista que vai de 0 a 9. (o 10 é não inclusivo)
     ages = range(0, 10)
     weights = [3.6, 4.4, 5.2, 6, 6.6, 7.2,
-               7.8, 8.4, 8.8, 9.2]  # Lista de pesos
+               7.8, 8.4, 8.8, 9.2]  # Lista de pesos presente no arquivo weight_chart.txt
 
     # título
     plt.title("The relationship between age and weight in a growing infant")
@@ -36,7 +34,7 @@ def question_1():
 def question_2():
 
     feature_count = [79049, 50770, 32029, 26248, 13840, 5195, 1638,
-                     1602, 1431, 491, 474, 341]  # Valor de contagem para cada barra
+                     1602, 1431, 491, 474, 341]  # Valor de contagem para cada barra disponibilizados no arquivo feature_counts.txt
     y_coords = range(12)  # Lista com as coordenadas y das barras
 
     # Nome associado a cada contagem para serem colocados no eixo y
@@ -74,7 +72,7 @@ def question_4():
   # valores dados no dataset, que determinam a altura da barra
   values = [2,1,2,3,3,6,5,10,9,18] 
 
-  # valores dados no dataset(marcadores do eixo x)
+  # valores dados no dataset(marcadores do eixo x), arquivo: male_female_counts.txt
   labels = ["D1 Male", "D1 Female", "D2 Male", "D2 Female", "D3 Male", "D3 Female", "D4 Male", "D4 Female", "D5 Male", "D5 Female"]
 
   # cor para cada barra 
