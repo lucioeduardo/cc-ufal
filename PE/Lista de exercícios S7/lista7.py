@@ -4,10 +4,12 @@ from matplotlib import pyplot as plt
 import matplotlib.patches as mpatches
 
 def question_1():
-    # Lista de idades, a função range gera uma lista que vai de 0 a 9. (o 10 é não inclusivo)
-    ages = range(0, 10)
-    weights = [3.6, 4.4, 5.2, 6, 6.6, 7.2,
-               7.8, 8.4, 8.8, 9.2]  # Lista de pesos presente no arquivo weight_chart.txt
+    # lendo o dataset via csv através do pandas
+    data = pd.read_csv('weight_chart.csv', sep="\t")
+
+    # Lista de idades e pesos lidos do dataset
+    ages = data['Age']
+    weights = data['Weight'] 
 
     # título
     plt.title("The relationship between age and weight in a growing infant")
@@ -32,23 +34,22 @@ def question_1():
 
 
 def question_2():
+    data = pd.read_csv('feature_counts.csv', sep="\t")
 
-    feature_count = [79049, 50770, 32029, 26248, 13840, 5195, 1638,
-                     1602, 1431, 491, 474, 341]  # Valor de contagem para cada barra disponibilizados no arquivo feature_counts.txt
+    count = data['Count'] # Valor de contagem para cada barra disponibilizados no dataset
     y_coords = range(12)  # Lista com as coordenadas y das barras
 
-    # Nome associado a cada contagem para serem colocados no eixo y
-    labels = ['Messenger RNA', 'Coding Sequences', 'Genes', 'Transfer RNAs', 'CpG islands', 'Pseudogenes', 'Micro-RNAs',
-              'Small nucleolar RNAs', 'Small nuclear RNAs', 'Miscellaneous RNA', 'Immunoglobulin Segments', 'Ribossomal RNAs']
+    # Lista de features
+    features = data['Feature'] 
 
     # Plotagem de uma barra horizontal, color define a cor da barra e edgecolor define a cor do contorno.
-    plt.barh(y_coords, feature_count, color='lightgrey', edgecolor='grey')
+    plt.barh(y_coords, count, color='lightgrey', edgecolor='grey')
 
     # Legenda no eixo x
     plt.xlabel('Number of features')
 
     # Modificando os valores para marcador nos eixos
-    plt.yticks(y_coords, labels) # Associando cada valor de y com o nome dado no arquivo
+    plt.yticks(y_coords, features) # Associando cada valor de y com o nome dado no arquivo
     plt.xticks([0,20000,40000,60000]) # Colocando os mesmos marcadores do gráfico de exemplo
 
     plt.tight_layout() # Ajusta o gráfico para a tela, evitando cortar as legendas.
@@ -69,23 +70,24 @@ def question_3():
   plt.show()
 
 def question_4():
-  # valores dados no dataset, que determinam a altura da barra
-  values = [2,1,2,3,3,6,5,10,9,18] 
+  data = pd.read_csv('male_female_counts.csv', sep="\t")
 
-  # valores dados no dataset(marcadores do eixo x), arquivo: male_female_counts.txt
-  labels = ["D1 Male", "D1 Female", "D2 Male", "D2 Female", "D3 Male", "D3 Female", "D4 Male", "D4 Female", "D5 Male", "D5 Female"]
 
-  # cor para cada barra 
+  # valores de samples e count dados no dataset
+  samples = data['Sample']
+  count = data['Count']  
+
+  # definindo uma cor para cada barra 
   colors = ['red','orange','palegreen', 'lime', 'limegreen', 'aqua', 'royalblue', 'mediumblue', 'blueviolet', 'magenta']
 
-  # coordenadas do eixo x, de 0 a 9 já que tem 10 barras
-  x_coords = range(10)
+  # coordenadas do eixo x, uma para cada sample
+  x_coords = range(len(samples))
 
   # plotando o grafico de barras
-  plt.bar(x_coords, values, color=colors)
+  plt.bar(x_coords, count, color=colors)
   
   # modificando os marcadores dos eixos e o tamanho da fonte no eixo x para evitar sobreposição
-  plt.xticks(x_coords, labels, fontsize=6)
+  plt.xticks(x_coords, samples, fontsize=6) # mostrar nome da sample em vez do valor no eixo x
   plt.yticks([0,5,10,15])
   
   # mostrando o grafico
@@ -200,7 +202,6 @@ def question_7():
   plt.ylabel('Body weight')
 
   plt.show()
-
 
 op = int(input("Digite o número da questão para visualizar o gráfico (de 1 a 7):"))
 
