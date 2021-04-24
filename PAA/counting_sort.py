@@ -1,10 +1,7 @@
-import os, psutil
 import time
 import numpy as np
 from memory_profiler import memory_usage
 import gc
-
-process = psutil.Process(os.getpid())
 
 op_count = 0
 
@@ -12,8 +9,8 @@ def counting_sort(arr, k):
     global op_count
     n = len(arr)
 
-    count = (k+1)*[0]; #op_count += k+1
-    output = n*[0]; #op_count += n
+    count = (k+1)*[0]
+    output = n*[0]
 
     for i in arr:
       op_count+=1
@@ -37,14 +34,8 @@ def test(n, k, arr):
   op_count = 0
 
   start = time.time()
-  mem_usage = memory_usage((counting_sort, [arr, max(arr)]))
+  mem_usage = memory_usage((counting_sort, [arr, k]))
   end = time.time()
-
-  #print('N=%d K=%d:'%(n,k))
-  # print('  Número de operações:', op_count)
-  # print('  Número de comparações: 0')
-  # print('  Uso de memória: %.2f MB'%max(mem_usage))
-  # print('  Tempo em execução: %.6lfs'%(end-start))
 
   return {
     'Número de operações': op_count,
@@ -73,23 +64,14 @@ for n in n_list:
   for k in k_list:
     arr = np.random.randint(k, size=n)
 
-    # print("\n\n",n,k)
-
     info = {'N':n, 'K':k, 'Método': 'Aleatório'}
-
-    # print('Random:')
-
     info['Resultado'] = test(n,k,arr)
-
     res.append(info)
 
-    # print('\nOrdem crescente:')
     info = {'N':n, 'K':k, 'Método': 'Crescente'}
     info['Resultado'] = test_incr(arr,n,k)
-
     res.append(info)
 
-    # print('\nOrdem decrescente:')
     info = {'N':n, 'K':k, 'Método': 'Decrescente'}
     info['Resultado'] = test_decr(arr,n,k)
     res.append(info)
